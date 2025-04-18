@@ -1,0 +1,38 @@
+# Initialize two empty lists to store food items and their corresponding prices
+foods = []
+prices = []
+
+# Start an infinite loop to allow the user to enter multiple items
+while True:
+    # Ask the user to enter a food item or 'Q' to quit
+    food = input("Enter the food to buy (press Q when you're done): ")
+    
+    # Check if the user wants to quit
+    if food.lower() == "q":
+        break
+    else:
+        # Ask for the price of the entered food item
+        try:
+            price = float(input(f"Enter the price of {food}: R"))
+        except ValueError:
+            # Handle the case where the user enters something that's not a valid number
+            print("Please enter a valid number for price.")
+            continue
+        
+        # Add the valid food and price to their respective lists
+        foods.append(food)
+        prices.append(price)
+
+    # Display the current contents of the cart
+    print("\n---------- YOUR CART ----------")
+    for item, price in zip(foods, prices):
+        print(f"{item} - R{price:.2f}")  # Show each item with its price
+
+    # Calculate and display the current total
+    total = sum(prices)
+    print(f"\nTOTAL: R{total:.2f}")
+    print("-------------------------------\n")
+
+# Display the final total after exiting the loop
+total = sum(prices)
+print(f"\nTOTAL: R{total:.2f}")
